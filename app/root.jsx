@@ -1,3 +1,16 @@
+import { Outlet, LiveReload } from "@remix-run/react"
+
 export default function App() {
-  return <h1>My App</h1>
+  return (
+    <html>
+      <head>
+        <title>My Remix Blog</title>
+      </head>
+      <body>
+        hello2
+        <Outlet />
+        {process.env.NODE_ENV === "development" ? <LiveReload /> : null}
+      </body>
+    </html>
+  )
 }
