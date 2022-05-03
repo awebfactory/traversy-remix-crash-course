@@ -1,3 +1,11 @@
+- [Traversy Media Remix Crash Course December 2021 | Full Stack React](https://youtu.be/d_BhzHVV4aQ)
+- [Remix Crash Course Pt 2 | User Authentication](https://youtu.be/wEoktJMSWLY)
+- [Original Repo bradtraversy / remix-blog](https://github.com/bradtraversy/remix-blog)
+
+I decided to make atomic commits at each step in following this great course from scratch before undertaking my first Remix project
+
+---
+
 # Welcome to Remix!
 
 - [Remix Docs](https://remix.run/docs)
