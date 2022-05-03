@@ -1,10 +1,10 @@
-I decided to make atomic commits at each step in following this great course from scratch before undertaking my first Remix project
+Brad's very clear and modestly simple high powered tutorial lays out the power of Remix from scratch step by step, and is a great companion to the excellent official Remix tutorials.
+
+I decided to make atomic commits at each step based on the latest Remix release before undertaking my first Remix project.
 
 - Video [Traversy Media Remix Crash Course December 2021 | Full Stack React](https://youtu.be/d_BhzHVV4aQ)
 - Video [Remix Crash Course Pt 2 | User Authentication](https://youtu.be/wEoktJMSWLY)
 - [Original Repo bradtraversy / remix-blog](https://github.com/bradtraversy/remix-blog)
-
-Brad's very clear and modestly simple high powered tutorial lays out the power of Remix
 
 ---
 
