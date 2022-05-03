@@ -13,7 +13,7 @@ export const loader = () => {
 
 export default function PostItems() {
   const { posts } = useLoaderData()
-  console.log(posts)
+  // @todo display posts in final form
   return (
     <>
       <div className="page-header">

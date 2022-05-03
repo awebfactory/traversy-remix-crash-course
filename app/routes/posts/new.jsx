@@ -6,7 +6,7 @@ export const action = async ({ request }) => {
   const title = form.get("title")
   const body = form.get("body")
   const fields = { title, body }
-  console.log(fields)
+  // @todo - submit to database
   return redirect("/posts")
 }
 
