@@ -9,9 +9,10 @@ export default function Posts() {
       <h2>Nested Routing</h2>
       <p>
         Now I can nest routes in the name matching `posts` folder right here on
-        this page at this outlet
+        this page at this outlet. Below this comment you can see the nested
+        routes
       </p>
-      <p>That just works, too.</p>
+
       <Outlet />
     </div>
   )
