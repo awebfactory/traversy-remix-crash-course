@@ -3,7 +3,10 @@ import { redirect } from "@remix-run/node"
 
 export const action = async ({ request }) => {
   const form = await request.formData()
-  console.log(form)
+  const title = form.get("title")
+  const body = form.get("body")
+  const fields = { title, body }
+  console.log(fields)
   return redirect("/posts")
 }
 
