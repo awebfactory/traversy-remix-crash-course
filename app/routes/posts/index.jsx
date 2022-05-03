@@ -1,4 +1,9 @@
-import { Outlet } from "@remix-run/react"
+import { Outlet, useLoaderData } from "@remix-run/react"
+
+export const loader = () => {
+  console.log(123)
+  return {}
+}
 
 export default function PostItems() {
   return (
