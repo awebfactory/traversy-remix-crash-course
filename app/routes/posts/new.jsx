@@ -1,8 +1,9 @@
 import { Link } from "@remix-run/react"
 import { redirect } from "@remix-run/node"
 
-export const action = () => {
-  console.log("somebody submitted the form")
+export const action = async ({ request }) => {
+  const form = await request.formData()
+  console.log(form)
   return redirect("/posts")
 }
 
