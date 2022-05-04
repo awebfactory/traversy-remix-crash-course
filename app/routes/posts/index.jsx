@@ -1,4 +1,4 @@
-import { Outlet, useLoaderData, Link } from "@remix-run/react"
+import { useLoaderData, Link } from "@remix-run/react"
 
 export const loader = () => {
   const data = {
