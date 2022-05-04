@@ -7,6 +7,8 @@ export const action = async ({ request }) => {
   const body = form.get("body")
   const fields = { title, body }
   // @todo - submit to database
+
+  // uncomment to provoke ErrorBoundary invocation of form posting without return
   return redirect("/posts")
 }
 
@@ -35,5 +37,15 @@ export default function NewPost() {
         </form>
       </div>
     </>
+  )
+}
+
+export function ErrorBoundary({ error }) {
+  console.log(error)
+  return (
+    <div>
+      <h1>Error</h1>
+      <pre>{error.message}</pre>
+    </div>
   )
 }
