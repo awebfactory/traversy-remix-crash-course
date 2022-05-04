@@ -1,4 +1,5 @@
 import { useLoaderData, Link } from "@remix-run/react"
+import { redirect } from "@remix-run/node"
 import { db } from "~/utils/db.server"
 
 export const loader = async ({ params }) => {
@@ -10,6 +11,21 @@ export const loader = async ({ params }) => {
 
   const data = { post }
   return data
+}
+
+export const action = async ({ request, params }) => {
+  const form = await request.formData()
+  if (form.get("_method") === "delete") {
+    const post = await db.post.findUnique({
+      where: { id: params.postId },
+    })
+
+    if (!post) throw new Error("Post not found")
+
+    await db.post.delete({ where: { id: params.postId } })
+
+    return redirect("/posts")
+  }
 }
 
 export default function Post() {
@@ -25,6 +41,13 @@ export default function Post() {
       </div>
 
       <div className="page-content">{post.body}</div>
+
+      <div className="page-footer">
+        <form method="POST">
+          <input type="hidden" name="_method" value="delete" />
+          <button className="btn btn-delete">Delete</button>
+        </form>
+      </div>
     </div>
   )
 }
