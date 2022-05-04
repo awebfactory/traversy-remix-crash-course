@@ -60,3 +60,13 @@ function Layout({ children }) {
     </>
   )
 }
+
+export function ErrorBoundary({ error }) {
+  console.log(error)
+  return (
+    <div>
+      <h1>Error</h1>
+      <pre>{error.message}</pre>
+    </div>
+  )
+}
