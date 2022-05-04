@@ -1,15 +1,17 @@
 import { Link } from "@remix-run/react"
 import { redirect } from "@remix-run/node"
+import { db } from "~/utils/db.server"
 
 export const action = async ({ request }) => {
   const form = await request.formData()
   const title = form.get("title")
   const body = form.get("body")
-  const fields = { title, body }
-  // @todo - submit to database
 
-  // uncomment to provoke ErrorBoundary invocation of form posting without return
-  return redirect("/posts")
+  const fields = { title, body }
+
+  const post = await db.post.create({ data: fields })
+
+  return redirect(`/posts/${post.id}`)
 }
 
 export default function NewPost() {
