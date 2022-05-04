@@ -4,6 +4,9 @@
   "description": "",
   "license": "",
   "sideEffects": false,
+  "prisma": {
+    "seed": "node prisma/seed"
+  },
   "scripts": {
     "build": "remix build",
     "dev": "remix dev",
