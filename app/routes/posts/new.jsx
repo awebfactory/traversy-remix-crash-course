@@ -1,6 +1,22 @@
-import { Link } from "@remix-run/react"
-import { redirect } from "@remix-run/node"
+import { Link, useActionData } from "@remix-run/react"
+import { redirect, json } from "@remix-run/node"
 import { db } from "~/utils/db.server"
+
+function validateTitle(title) {
+  if (typeof title !== "string" || title.length < 3) {
+    return "Title must be at least 3 characters"
+  }
+}
+
+function validateBody(body) {
+  if (typeof body !== "string" || body.length < 10) {
+    return "Body must be at least 10 characters"
+  }
+}
+
+function badRequest(data) {
+  return json(data, { status: 400 })
+}
 
 export const action = async ({ request }) => {
   const form = await request.formData()
@@ -9,12 +25,23 @@ export const action = async ({ request }) => {
 
   const fields = { title, body }
 
+  const fieldErrors = {
+    title: validateTitle(title),
+    body: validateBody(body),
+  }
+
+  if (Object.values(fieldErrors).some(Boolean)) {
+    console.log(fieldErrors)
+    return badRequest({ fieldErrors, fields })
+  }
+
   const post = await db.post.create({ data: fields })
 
   return redirect(`/posts/${post.id}`)
 }
 
 export default function NewPost() {
+  const actionData = useActionData()
   return (
     <>
       <div className="page-header">
@@ -27,11 +54,42 @@ export default function NewPost() {
         <form method="POST">
           <div className="form-control">
             <label htmlFor="title">Title</label>
-            <input type="text" name="title" id="title" />
+            <input
+              type="text"
+              name="title"
+              id="title"
+              defaultValue={actionData?.fields?.title}
+            />
+            <div className="error">
+              {actionData?.fieldErrors?.title ? (
+                <p
+                  className="form-validation-error"
+                  role="alert"
+                  id="title-error"
+                >
+                  {actionData.fieldErrors.title}
+                </p>
+              ) : null}
+            </div>
           </div>
           <div className="form-control">
             <label htmlFor="body">Post Body</label>
-            <textarea name="body" id="body" />
+            <textarea
+              name="body"
+              id="body"
+              defaultValue={actionData?.fields?.body}
+            />
+            <div className="error">
+              {actionData?.fieldErrors?.body ? (
+                <p
+                  className="form-validation-error"
+                  role="alert"
+                  id="body-error"
+                >
+                  {actionData.fieldErrors.body}
+                </p>
+              ) : null}
+            </div>
           </div>
           <button type="submit" className="button btn btn-block">
             Add Post
