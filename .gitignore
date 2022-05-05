@@ -3,4 +3,5 @@ node_modules
 /public/build
 /.cache
 /prisma/dev.db
+/prisma/*.sql
 .env
