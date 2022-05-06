@@ -1,7 +1,7 @@
 import { useActionData } from "@remix-run/react"
 import { redirect, json } from "@remix-run/node"
 import { db } from "~/utils/db.server"
-import { login } from "~/utils/session.server"
+import { login, createUserSession } from "~/utils/session.server"
 
 function validateUsername(username) {
   if (typeof username !== "string" || username.length < 3) {
@@ -50,6 +50,7 @@ export const action = async ({ request }) => {
       }
 
       // Create Session
+      return createUserSession(user.id, "/posts")
     }
     case "register": {
       // Check if user exists
