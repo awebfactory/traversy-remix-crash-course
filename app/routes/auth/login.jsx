@@ -34,6 +34,25 @@ export const action = async ({ request }) => {
   if (Object.values(fieldErrors).some(Boolean)) {
     return badRequest({ fieldErrors, fields })
   }
+
+  switch (loginType) {
+    case "login": {
+      // Find user
+      // Check user
+      // Create Session
+    }
+    case "register": {
+      // Check if user exists
+      // Create user
+      // Create session
+    }
+    default: {
+      return badRequest({
+        fields,
+        formError: "Login type is invalid",
+      })
+    }
+  }
 }
 
 export default function Login() {
